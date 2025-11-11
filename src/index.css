@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+body {
+  background-color: #f2f2f2; 
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.08) 1px, transparent 1px), 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.08) 1px, transparent 1px); 
+  background-size: 20px 20px;
+}
+
+:root {
+  --background-color-light: #ffffff;
+  --text-color-light: #333333;
+}
+
+[data-theme='light'] {
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+
+[data-theme='dark'] {
+  --background-color-dark: #333333;
+  --text-color-dark: #ffffff;
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+
+
