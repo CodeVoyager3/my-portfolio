@@ -2,7 +2,7 @@ import ToggleTheme from './ToggleTheme';
 
 function Navbar({ scrollToSection, homeRef, AboutMeRef, projectsRef, connectRef }) {
     return (
-        <nav className="bg-white dark:bg-neutral-800 text-xl shadow-lg sticky top-4 z-50 w-auto mx-auto max-w-4xl h-16 rounded-[50px] overflow-hidden flex items-center backdrop-blur-sm bg-opacity-95 dark:bg-opacity-95">
+        <nav className="bg-white dark:bg-neutral-800 text-base sm:text-lg lg:text-xl shadow-lg sticky top-4 z-50 w-auto mx-auto max-w-4xl h-16 rounded-[50px] flex items-center backdrop-blur-sm bg-opacity-95 dark:bg-opacity-95">
             <div className="px-2 sm:px-4 lg:px-8 w-full">
                 <div className="flex justify-between items-center h-full w-full">
                     <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-5 lg:space-x-6">
