@@ -32,19 +32,20 @@ function App() {
             />
 
             <main>
-                <section ref={homeRef} className='pt-20px' id="home">
+                {/* ADDED scroll-mt-24 to offset for the sticky Navbar */}
+                <section ref={homeRef} className='pt-20px scroll-mt-24' id="home">
                     <Home />
                 </section>
                 <div className='w-full border-t-2 border-dashed border-gray-400 my-4'></div>
-                <section ref={AboutMeRef} id="AboutMe" className="pt-20">
+                <section ref={AboutMeRef} id="AboutMe" className="pt-20 scroll-mt-24">
                     <AboutMe />
                 </section>
                 <div className='w-full border-t-2 border-dashed border-gray-400 my-4'></div>
-                <section ref={projectsRef} id="projects" className="pt-20">
+                <section ref={projectsRef} id="projects" className="pt-20 scroll-mt-24">
                     <Projects />
                 </section>
                 <div className='w-full border-t-2 border-dashed border-gray-400 my-4'></div>
-                <section ref={connectRef} id="Connect" className="pt-20">
+                <section ref={connectRef} id="Connect" className="pt-20 scroll-mt-24">
                     <Connect />
                 </section>
             </main>
