@@ -19,7 +19,7 @@ function Navbar({ scrollToSection, homeRef, AboutMeRef, projectsRef, connectRef 
                             onClick={(e) => { e.preventDefault(); scrollToSection(AboutMeRef); }} 
                             className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 font-semibold relative group"
                         >
-                            AboutMe
+                            About Me
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
                         </a>
                         <a 
