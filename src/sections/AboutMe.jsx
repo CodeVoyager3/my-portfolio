@@ -42,8 +42,6 @@ function AboutMe() {
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
