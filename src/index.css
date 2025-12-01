@@ -1,15 +1,41 @@
 @import "tailwindcss";
 
+@theme {
+  --font-minecraft: 'VT323', monospace;
+  --color-minecraft-dirt: #5d4037;
+  --color-minecraft-grass: #7cb342;
+  --color-minecraft-stone: #757575;
+  --color-minecraft-btn-bg: #d3d3d3;
+  --color-minecraft-btn-border-light: #ffffff;
+  --color-minecraft-btn-border-dark: #555555;
+
+  --animate-blink-cursor: blink 1s step-end infinite;
+
+  @keyframes blink {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
 body {
-  background-color: #f2f2f2; 
-  background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.08) 1px, transparent 1px), 
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.08) 1px, transparent 1px); 
-  background-size: 20px 20px;
+  font-family: var(--font-minecraft);
+  /* background-image: url('/dirt_texture.png'); */
+  /* background-repeat: repeat; */
+  /* background-size: 64px 64px; */
+  image-rendering: pixelated;
+  color: white;
+  background-color: transparent;
 }
 
 :root {
-  --background-color-light: #ffffff;
+  --background-color-light: transparent;
   --text-color-light: #333333;
 }
 
@@ -19,11 +45,32 @@ body {
 }
 
 [data-theme='dark'] {
-  --background-color-dark: #333333;
+  --background-color-dark: transparent;
   --text-color-dark: #ffffff;
   background-color: var(--background-color-dark);
   color: var(--text-color-dark);
 }
 
+@utility text-shadow-minecraft {
+  text-shadow: 2px 2px 0px #000000;
+}
 
+/* Minecraft Steel Scrollbar */
+::-webkit-scrollbar {
+  width: 20px;
+}
 
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-left: 2px solid #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #8b8b8b;
+  border: 2px solid #1a1a1a;
+  box-shadow: inset 2px 2px 0px #ffffff, inset -2px -2px 0px #373737;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
+}

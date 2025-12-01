@@ -1,94 +1,80 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Github, ExternalLink } from 'lucide-react'
 
 function Projects() {
+  const [hoveredProject, setHoveredProject] = useState(null);
+
   const projects = [
     {
       title: "Collab LM",
-      description: "CollabLM: A unified, real-time collaboration platform built with React/Node.js and Web Sockets that uses the Gemini API to generate AI-Powered Knowledge Graphs and integrated insights from shared resources and team discussions, significantly boosting productivity.",
+      description: "A unified, real-time collaboration platform built with React/Node.js and Web Sockets using Gemini API.",
       github: "https://github.com/CodeVoyager3",
       demo: "/",
-      gif: "/gifs/collab.gif"
+      gif: "collablm.jpg",
+      icon: "🤖"
     },
     {
       title: "Krishi Rakshak",
-      description: "Krishi Rakshak: A full-stack MERN application leveraging computer vision (CNN) to detect crop diseases from images, providing farmers with real-time diagnoses and mitigation strategies.",
+      description: "MERN app using CNN to detect crop diseases from images, providing real-time diagnoses.",
       github: "https://github.com/CodeVoyager3/Krishi-Latest",
       demo: "https://krishi-latest.vercel.app/",
-      gif: "/gifs/krishi.gif"
+      gif: "krishi.jpeg",
+      icon: "🌾"
     },
     {
       title: "Meta Drip",
-      description: "Meta Drip: A Virtual Augmented Reality (AR) shopping assistant built with React, Node.js, and MongoDB that leverages MediaPipe Face Mesh for real-time virtual try-on of accessories like eyeglasses and sunglasses.",
+      description: "AR shopping assistant with React, Node.js, and MongoDB using MediaPipe Face Mesh.",
       github: "https://github.com/CodeVoyager3/Meta-Drip-Final",
       demo: "https://meta-drip.vercel.app/",
-      gif: "/gifs/meta.gif"
+      gif: "drip.png",
+      icon: "👓"
     }
   ]
 
   return (
+    <div className='py-16 flex flex-col items-center justify-center min-h-screen'>
+      <h1 className='text-4xl md:text-5xl font-bold text-white mb-8 drop-shadow-[4px_4px_0_rgba(0,0,0,0.5)]'>
+        PROJECTS
+      </h1>
 
-    <div className='mt-[-20px]'>
-
-      <div className='text-6xl font-bold text-center mt-15 mb-16'>
-        <h1>Projects</h1>
-      </div>
-
-      <div className='max-w-5xl mx-auto px-6 pb-20'>
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+      <div className='bg-[#c6c6c6] p-4 rounded-sm border-4 border-[#555555] shadow-2xl relative'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
           {projects.map((project, index) => (
             <div
               key={index}
-              className='rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow flex flex-col h-full'
+              className='relative group flex flex-col items-center'
+              onMouseEnter={() => setHoveredProject(index)}
+              onMouseLeave={() => setHoveredProject(null)}
             >
-              <div className='h-48 w-full bg-gray-100 dark:bg-gray-800 overflow-hidden'>
+              {/* Inventory Slot */}
+              <div className='w-64 h-64 md:w-80 md:h-80 bg-[#8b8b8b] border-t-4 border-l-4 border-[#373737] border-b-4 border-r-4 border-[#ffffff] flex items-center justify-center cursor-pointer hover:bg-[#a0a0a0] transition-colors'>
                 {project.gif ? (
-                  <img
-                    src={project.gif}
-                    alt={`${project.title} demo`}
-                    className='h-48 w-full object-cover'
-                  />
+                  <img src={project.gif} alt={project.title} className="w-[90%] h-[90%] object-cover pixelated border-2 border-[#373737]" />
                 ) : (
-                  <div className='h-48 w-full flex items-center justify-center text-sm text-gray-500'>
-                    No preview available
-                  </div>
+                  <span className='text-6xl filter drop-shadow-md'>{project.icon}</span>
                 )}
               </div>
 
-              <div className='p-6 flex flex-col flex-1'>
-                <div>
-                  <h3 className='text-2xl font-bold  mb-3'>
-                    {project.title}
-                  </h3>
+              {/* Tooltip */}
+              <div className={`absolute z-50 left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 bg-[#100010] border-2 border-[#2a002a] text-white p-2 text-sm font-minecraft pointer-events-none transition-opacity duration-200 ${hoveredProject === index ? 'opacity-100' : 'opacity-0'}`}>
+                <h3 className='text-[#ffff55] mb-1'>{project.title}</h3>
+                <p className='text-[#aaaaaa] mb-2'>{project.description}</p>
+              </div>
 
-                  <p className=' text-sm mb-6 leading-relaxed'>
-                    {project.description}
-                  </p>
-                </div>
-
-                <div className='flex mt-auto gap-4'>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className='flex items-center gap-2  hover:text-blue-600 dark:hover:text-blue-400 transition-colors'
-                  >
-                    <Github size={20} />
-                    <span className='text-sm font-medium'>Code</span>
-                  </a>
-
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className='flex items-center gap-2  hover:text-blue-600 dark:hover:text-blue-400 transition-colors'
-                  >
-                    <ExternalLink size={20} />
-                    <span className='text-sm font-medium'>Live Demo</span>
-                  </a>
-                </div>
+              {/* Clickable Links Overlay - Always Visible */}
+              <div className="flex justify-center gap-2 mt-2">
+                <a href={project.github} target="_blank" rel="noreferrer" className="bg-[#d3d3d3] border-2 border-white p-1 hover:bg-white" title="Code">
+                  <Github size={24} color="black" />
+                </a>
+                <a href={project.demo} target="_blank" rel="noreferrer" className="bg-[#d3d3d3] border-2 border-white p-1 hover:bg-white" title="Demo">
+                  <ExternalLink size={24} color="black" />
+                </a>
               </div>
             </div>
+          ))}
+          {/* Empty Slots to fill grid if needed */}
+          {[...Array(3 - projects.length)].map((_, i) => (
+            <div key={`empty-${i}`} className='w-64 h-64 md:w-80 md:h-80 bg-[#8b8b8b] border-t-4 border-l-4 border-[#373737] border-b-4 border-r-4 border-[#ffffff]'></div>
           ))}
         </div>
       </div>

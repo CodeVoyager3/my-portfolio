@@ -1,49 +1,64 @@
-import ToggleTheme from './ToggleTheme';
+
+import React from 'react';
 
 function Navbar({ scrollToSection, homeRef, AboutMeRef, projectsRef, connectRef }) {
-    return (
-        <nav className="bg-white dark:bg-neutral-800 text-xl shadow-lg sticky top-4 z-50 w-auto mx-auto max-w-4xl h-16 rounded-[50px] overflow-hidden flex items-center backdrop-blur-sm bg-opacity-95 dark:bg-opacity-95">
-            <div className="px-2 sm:px-4 lg:px-8 w-full">
-                <div className="flex justify-between items-center h-full w-full">
-                    <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-5 lg:space-x-6">
-                        <a 
-                            href="#home" 
-                            onClick={(e) => { e.preventDefault(); scrollToSection(homeRef); }} 
-                            className="text-gray-700 ml-3 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 font-semibold relative group"
-                        >
-                            Home
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                        <a 
-                            href="#AboutMe" 
-                            onClick={(e) => { e.preventDefault(); scrollToSection(AboutMeRef); }} 
-                            className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 font-semibold relative group"
-                        >
-                            AboutMe
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                        <a 
-                            href="#projects" 
-                            onClick={(e) => { e.preventDefault(); scrollToSection(projectsRef); }} 
-                            className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 font-semibold relative group"
-                        >
-                            Projects
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                        <a 
-                            href="#connect" 
-                            onClick={(e) => { e.preventDefault(); scrollToSection(connectRef); }} 
-                            className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 font-semibold relative group"
-                        >
-                            Contact
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                    </div>
+    const navItems = [
+        { name: 'HOME', ref: homeRef, icon: '/home.png' },
+        { name: 'PROJECTS', ref: projectsRef, icon: '/axe.png' },
+        { name: 'ABOUT', ref: AboutMeRef, icon: '/book.png' },
+        { name: 'CONTACT', ref: connectRef, icon: '/envelope.png' }
+    ];
 
-                    <div className="ml-3">
-                        <ToggleTheme />
+    const audioRef = React.useRef(new Audio('/click.mp3'));
+
+    const playClickSound = () => {
+        const audio = audioRef.current;
+        audio.currentTime = 0.5;
+        audio.play().catch(e => console.error("Audio play failed:", e));
+    };
+
+    return (
+        <nav className="fixed top-5 left-0 right-0 z-50 flex justify-center pointer-events-none">
+            {/* Hotbar Container with Steel Gradient Border */}
+            <div
+                className="p-1 flex items-end space-x-1 pointer-events-auto bg-[#1e1e1e]/80 backdrop-blur-sm"
+                style={{
+                    border: '3px solid transparent',
+                    borderImage: 'linear-gradient(to bottom, #d4d4d4, #5a5a5a) 1'
+                }}
+            >
+                {navItems.map((item) => (
+                    <div key={item.name} className="flex flex-col items-center group">
+                        {/* Slot with Steel Gradient Border */}
+                        <button
+                            onClick={() => {
+                                playClickSound();
+                                scrollToSection(item.ref);
+                            }}
+                            className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-[#8b8b8b] hover:bg-[#a0a0a0] active:bg-[#707070] flex items-center justify-center transition-colors duration-100"
+                            title={item.name}
+                            style={{
+                                border: '3px solid transparent',
+                                borderImage: 'linear-gradient(to bottom right, #e0e0e0, #707070, #404040) 1'
+                            }}
+                        >
+                            {/* Inner Shadow/Highlight for depth */}
+                            <div className="absolute inset-0 border-t-2 border-l-2 border-[#ffffff]/30 border-b-2 border-r-2 border-[#000000]/30 pointer-events-none"></div>
+
+                            {/* Icon */}
+                            <img
+                                src={item.icon}
+                                alt={item.name}
+                                className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 pixelated drop-shadow-md group-hover:scale-110 transition-transform duration-100"
+                            />
+                        </button>
+
+                        {/* Label */}
+                        <span className="mt-1 text-xs sm:text-sm md:text-base text-white font-minecraft text-shadow-minecraft tracking-wide bg-black/50 px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                            {item.name}
+                        </span>
                     </div>
-                </div>
+                ))}
             </div>
         </nav>
     );

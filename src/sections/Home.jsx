@@ -13,34 +13,34 @@ function Home() {
     `;
 
     return (
-        <div className='flex items-center  justify-center min-h-screen px-8 py-16 md:px-20'>
-            <div className='h-20'></div>
+        <div className='flex flex-col items-center justify-center min-h-screen px-4 py-4 md:py-8 relative overflow-hidden'>
             <style>{keyframes}</style>
-            <div className='flex flex-col items-center  max-w-4xl'>
-                <div className='flex flex-col md:flex-row items-center gap-8 md:gap-12'>
-                    <div className='text-6xl lg:text-8xl font-bold'>
-                        <h1 className='text-center'>Hi! I'm</h1>
-                        <h1>Amritesh</h1>
-                    </div>
-                    
-                    <div className="relative w-[200px] h-[200px] md:w-[240px] md:h-[240px] lg:w-[280px] lg:h-[280px] shadow-2xl rounded-full flex-shrink-0">
-                        <div className="absolute -inset-2 bg-gradient-to-br from-blue-400 to-green-500 rounded-full opacity-60"></div>
-                        <img
-                            src="https://github.com/CodeVoyager3.png"
-                            className='relative w-full h-full object-cover rounded-full'
-                            alt="A professional photo of Amritesh"
-                        />
-                    </div>
-                </div>
 
-                <div className='h-16 text-3xl lg:text-4xl text-blue-600 mt-6'>
+            <div className='text-center z-10 mb-8'>
+                <h1 className='text-4xl md:text-6xl font-bold text-white drop-shadow-[4px_4px_0_rgba(0,0,0,0.5)] tracking-wider mb-4'>
+                    WELCOME TO AMRITESH' WORLD
+                </h1>
+                <div className='text-xl md:text-2xl text-[#ffff55] drop-shadow-[2px_2px_0_rgba(0,0,0,0.8)]'>
                     <Typewriter texts={messages} />
                 </div>
+            </div>
 
-                <div className='mt-6 text-lg lg:text-xl  space-y-4'>
-                    <p>I am a dedicated <strong>Full-Stack Developer</strong> focused on building robust and scalable web applications from front-end interface to back-end architecture.</p>
-                    <p>Proficient in the <strong>MERN stack (MongoDB, Express, React, Node.js)</strong> and foundational web technologies (HTML, CSS, JavaScript). I am committed to collaborative learning and delivering high-quality, efficient code.</p>
+            <div className="relative flex flex-col items-center">
+                {/* Steve Character */}
+                <div className="w-32 h-64 md:w-78 md:h-96 relative z-10 ">
+                    <img
+                        src="steve1.png"
+                        alt="Steve"
+                        className="w-full h-full "
+                        style={{ imageRendering: 'pixelated' }}
+                    />
                 </div>
+
+            </div>
+
+            <div className='mt-12 max-w-2xl text-center bg-[#000000aa] mt-10 p-6 border-4 border-white text-white'>
+                <p className="mb-4 text-lg">I am a dedicated <strong>Full-Stack Developer</strong> focused on building robust and scalable web applications.</p>
+                <p className="text-lg">Proficient in the <strong>MERN stack</strong> and committed to collaborative learning.</p>
             </div>
         </div>
     );
