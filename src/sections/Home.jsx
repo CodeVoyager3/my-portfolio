@@ -1,5 +1,5 @@
 import React from 'react';
-import Typewriter from '../components/TypeWriter';
+import Typewriter from '../components/TypeWriter.jsx';
 
 function Home() {
     const messages = ["Tech Enthusiast", "An OpenSource Contributor", "A FullStack Developer"];
